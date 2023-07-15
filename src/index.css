@@ -56,3 +56,9 @@ svg {
 .container_input {
   display: flex;
 }
+
+@media all and (max-width: 500px) {
+  p {
+    width: 80%;
+  }
+}
