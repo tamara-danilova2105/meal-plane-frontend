@@ -1,14 +1,16 @@
-import axios from "axios"
+import axios from "axios";
+
+const baseUrl = 'https://meal-plane.onrender.com';
 
 export const getAllMeals = seMeals => {
-    axios.get('http://localhost:8000/')
+    axios.get(`${baseUrl}`)
         .then(({ data }) => {
             seMeals(data)
         })
 }
 
 export const addMeal = (title, setTitle, setMeals) => {
-    axios.post('http://localhost:8000/saveMeals', { title })
+    axios.post(`${baseUrl}/saveMeals`, { title })
         .then(data => {
             console.log('add');
             setTitle('');
@@ -17,7 +19,7 @@ export const addMeal = (title, setTitle, setMeals) => {
 }
 
 export const editMeal = (mealId, title, setMeals, setTitle, setEditing) => {
-    axios.post('http://localhost:8000/editMeal', { _id: mealId, title })
+    axios.post(`${baseUrl}/editMeal`, { _id: mealId, title })
         .then(data => {
             console.log('edit');
             setTitle('');
@@ -27,7 +29,7 @@ export const editMeal = (mealId, title, setMeals, setTitle, setEditing) => {
 }
 
 export const deleteMeal = (_id, setMeals) => {
-    axios.post('http://localhost:8000/deleteMeals', { _id })
+    axios.post(`${baseUrl}/deleteMeals`, { _id })
         .then(data => {
             console.log('delete');
             getAllMeals(setMeals);
