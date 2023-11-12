@@ -7,7 +7,6 @@ function App() {
   const [meals, setMeals] = useState();
   const [title, setTitle] = useState('');
   const [editing, setEditing] = useState(false);
-  console.log(editing);
   const [mealId, setMealId] = useState();
 
   useEffect(() => {
