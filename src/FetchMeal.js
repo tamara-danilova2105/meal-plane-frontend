@@ -5,14 +5,14 @@ const baseUrl = {
     server: 'https://meal-plane.onrender.com',
 }
 
-const URL = baseUrl.server;
+const URL = baseUrl.local;
 
 export const getAllMeals = seMeals => {
     axios.get(`${URL}`)
         .then(({ data }) => {
             console.log(data);
             seMeals(data)
-        })
+        });
 }
 
 export const addMeal = (title, setTitle, setMeals) => {
@@ -20,7 +20,7 @@ export const addMeal = (title, setTitle, setMeals) => {
         .then(() => {
             setTitle('');
             getAllMeals(setMeals);
-        })
+        });
 }
 
 export const editMeal = (mealId, title, setMeals, setTitle, setEditing) => {
@@ -29,12 +29,19 @@ export const editMeal = (mealId, title, setMeals, setTitle, setEditing) => {
             setTitle('');
             setEditing(false);
             getAllMeals(setMeals);
-        })
+        });
 }
 
 export const deleteMeal = (_id, setMeals) => {
     axios.post(`${URL}/deleteMeals`, { _id })
         .then(() => {
             getAllMeals(setMeals);
-        })
+        });
+}
+
+export const deleteAll = setMeals => {
+    axios.post(`${URL}/deleteAll`)
+        .then(() => {
+            getAllMeals(setMeals);
+        });
 }

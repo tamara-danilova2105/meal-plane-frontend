@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Meals } from "./Meals";
-import { addMeal, deleteMeal, editMeal, getAllMeals } from "./FetchMeal";
+import { addMeal, deleteMeal, editMeal, getAllMeals, deleteAll } from "./FetchMeal";
 
 function App() {
 
@@ -30,6 +30,7 @@ function App() {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Meal Plane</h1>
+
       <div className="container_input">
         <input
           type='text'
@@ -37,10 +38,19 @@ function App() {
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
-        <button>
+
+        <button type="submit">
           {editing ? 'Edit' : 'Add'}
         </button>
+
+        <button
+          type="button"
+          onClick={() => deleteAll(setMeals)}
+        >
+          Clear
+        </button>
       </div>
+
       {
         meals?.map(meal =>
           <Meals

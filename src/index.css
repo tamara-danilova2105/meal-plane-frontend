@@ -29,6 +29,7 @@ button {
   font-size: 20px;
   cursor: pointer;
   border: none;
+  margin-left: 2px;
 }
   
   p {
