@@ -5,7 +5,7 @@ const baseUrl = {
     server: 'https://meal-plane.onrender.com',
 }
 
-export const URL = baseUrl.local;
+export const URL = baseUrl.server;
 
 export const getAllMeals = seMeals => {
     axios.get(`${URL}/meals`)

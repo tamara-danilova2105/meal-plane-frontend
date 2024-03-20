@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { Meals } from "./Meals";
-import { addMeal, deleteMeal, editMeal, getAllMeals, deleteAll, uploadFile } from "./FetchMeal";
-import { UploadFile } from "./UploadFile";
+import { 
+  addMeal, 
+  deleteMeal, 
+  editMeal, 
+  getAllMeals, 
+  deleteAll, 
+  // uploadFile 
+} from "./FetchMeal";
+// import { UploadFile } from "./UploadFile";
 
 function App() {
 
@@ -29,12 +36,12 @@ function App() {
     setMealId(_id);
   };
 
-  const uploadFileFromDisk = async e => {
-    console.log(e.target.files[0]);
-    const formData = new FormData();
-    formData.append('image', e.target.files[0]);
-    uploadFile(formData, setImage);
-  };
+  // const uploadFileFromDisk = async e => {
+  //   console.log(e.target.files[0]);
+  //   const formData = new FormData();
+  //   formData.append('image', e.target.files[0]);
+  //   uploadFile(formData, setImage);
+  // };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -48,9 +55,9 @@ function App() {
           onChange={e => setTitle(e.target.value)}
         />
 
-        <UploadFile
+        {/* <UploadFile
           uploadFileFromDisk={uploadFileFromDisk}
-        />
+        /> */}
 
         <button type="submit">
           {editing ? 'Edit' : 'Add'}
