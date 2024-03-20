@@ -56,6 +56,18 @@ svg {
 
 .container_input {
   display: flex;
+  height: 96px;
+}
+
+.btn-import {
+  position: relative;
+  height: 96px;
+  padding: 0;
+  left: 2px;
+  bottom: 96px;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
 }
 
 @media all and (max-width: 500px) {

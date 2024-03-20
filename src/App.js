@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Meals } from "./Meals";
-import { addMeal, deleteMeal, editMeal, getAllMeals, deleteAll } from "./FetchMeal";
+import { addMeal, deleteMeal, editMeal, getAllMeals, deleteAll, uploadFile } from "./FetchMeal";
+import { UploadFile } from "./UploadFile";
 
 function App() {
 
   const [meals, setMeals] = useState();
   const [title, setTitle] = useState('');
+  const [image, setImage] = useState(null);
   const [editing, setEditing] = useState(false);
   const [mealId, setMealId] = useState();
 
@@ -18,14 +20,21 @@ function App() {
     if (title.length === 0) return false
     editing
       ? editMeal(mealId, title, setMeals, setTitle, setEditing)
-      : addMeal(title, setTitle, setMeals)
+      : addMeal(title, image, setTitle, setImage, setMeals)
   }
 
   const handleEdit = (_id, title) => {
     setEditing(true);
     setTitle(title);
     setMealId(_id);
-  }
+  };
+
+  const uploadFileFromDisk = async e => {
+    console.log(e.target.files[0]);
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+    uploadFile(formData, setImage);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -37,6 +46,10 @@ function App() {
           placeholder='Meal Plane'
           value={title}
           onChange={e => setTitle(e.target.value)}
+        />
+
+        <UploadFile
+          uploadFileFromDisk={uploadFileFromDisk}
         />
 
         <button type="submit">
@@ -56,6 +69,7 @@ function App() {
           <Meals
             key={meal._id}
             text={meal.title}
+            image={meal.image}
             handleEdit={() => handleEdit(meal._id, meal.title)}
             deleteMeal={() => deleteMeal(meal._id, setMeals)}
           />
