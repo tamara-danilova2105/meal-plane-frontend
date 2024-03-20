@@ -76,7 +76,7 @@ function App() {
           <Meals
             key={meal._id}
             text={meal.title}
-            image={meal.image}
+            // image={meal.image}
             handleEdit={() => handleEdit(meal._id, meal.title)}
             deleteMeal={() => deleteMeal(meal._id, setMeals)}
           />
